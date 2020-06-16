@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  react:
+    container_name: react
+    build:
+        context: ./services/react
+        dockerfile: Dockerfile
+    volumes: 
+      - react_volume:/app/build
+  nginx:
+    build: 
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    volumes: 
+      - react_volume:/app/build
+    ports: 
+      - 80:80
+
+volumes:
+  react_volume:
